@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- <select name="" id="">
+    <option value="title">Title</option>
+    <option value="author">Author</option>
+  </select> -->
+  <form action="/searches" method="post">
+    <input type="text" id ="input-text" placeholder="Enter a title or author" name="titleOrAuthor">
+
+    <input type="radio" id="titleID" value="intitle" name="option">
+    <label for="title">Title</label>
+    <input type="radio" id="authorID" value="inauthor" name="option">
+    <label for="author">Author</label>
+    <button id="submit-button" type="submit">Search Google Books API</button>
+  </form>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+  <script src="../../../server.js"></script>
+</body>
+
+</html>
