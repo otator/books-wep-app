@@ -56,9 +56,15 @@ function Book(obj){
 }
 
 
+server.get('/', (req, res)=>{
+  res.render('pages/index');
+})
 
-
-
+server.get('*', (req, res)=>{
+  // res.status(404).send('<img style="background-size:cover;" src="">');
+  let imgUrl = 'https://i2.wp.com/learn.onemonth.com/wp-content/uploads/2017/08/1-10.png?w=845&ssl=1';
+  res.render('pages/error',{err: imgUrl})
+});
 
 server.listen(PORT, (req, res)=>{
   console.log(`Listening on  PORT ${PORT} ...`);
