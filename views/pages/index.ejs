@@ -17,22 +17,32 @@
   <h1>Home</h1>
   <h2>
     <span>
-      <%= data.length %>
+      <%= books.length %>
     </span> Saved Books
   </h2>
-  <% data.forEach(element=> {%>
-
+  <% books.forEach(item=>{%>
     <div>
-      <img src="<%= element.img_url%> " alt="">
-      <h3>
-        <%= element.title %>
-      </h3>
+      <img src="<%= item.img_url %> " alt="">
       <h4>
-        <%= element.author%>
+        <%= item.title %>
       </h4>
-      <button>View Details</button>
+      <h5>
+        <%= item.author %>
+      </h5>
+      <p>
+        <%= item.description %>
+      </p>
+
+      <form style="visibility:hidden" action="/books/<%=item.id %>" method="get">
+
+
+        <button style="visibility:visible;" type="submit">View Details</button>
+      </form>
+
     </div>
-    <% }); %>
+
+    <%}) %>
+
 </body>
 
 </html>

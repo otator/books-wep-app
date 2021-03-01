@@ -1,0 +1,25 @@
+<% singleDataBooks.forEach((item,index)=>{%>
+    <div>
+
+
+
+        <img src="<%= item.img_url %> " alt="">
+        <h3>
+            <%= item.title %>
+        </h3>
+        <h4>
+            <%= item.author%>
+        </h4>
+        <p>
+            <%= item.descriptions%>
+        </p>
+
+        <form action="/addtoDB" method="post">
+            <input type="radio" id="titleID" value=<%=index%> name="obj">
+
+            <button>Select This Book</button>
+
+        </form>
+
+    </div>
+    <%}); %>
