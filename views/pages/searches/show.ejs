@@ -10,20 +10,9 @@
 
 <body>
   <h1>Results</h1>
-  <% books.forEach(book=>{%>
-    <div class="container">
-      <img src="<%= book.img_url %> " alt="">
-      <h4>
-        <%= book.title %>
-      </h4>
-      <h5>
-        <%= book.author %>
-      </h5>
-      <p>
-        <%= book.description %>
-      </p>
-    </div>
-    <%}) %>
+  
+    <%- include('../layout/detail') %>
+      
 </body>
 
 </html>
