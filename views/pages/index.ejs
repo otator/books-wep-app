@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,10 +8,31 @@
   <title>Document</title>
   <!-- <link rel="stylesheet" href="../../public/style/layout.css">-->
   <link rel="stylesheet" href="style/layout.css">
+  <link rel="stylesheet" href="style/modules.css">
+
 
 </head>
+
 <body>
   <h1>Home</h1>
-  
+  <h2>
+    <span>
+      <%= data.length %>
+    </span> Saved Books
+  </h2>
+  <% data.forEach(element=> {%>
+
+    <div>
+      <img src="<%= element.img_url%> " alt="">
+      <h3>
+        <%= element.title %>
+      </h3>
+      <h4>
+        <%= element.author%>
+      </h4>
+      <button>View Details</button>
+    </div>
+    <% }); %>
 </body>
+
 </html>
