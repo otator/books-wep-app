@@ -22,8 +22,7 @@ server.use(express.urlencoded({ extended: true }));
 const methodOverride = require('method-override');
 server.set("view engine", "ejs");
 server.use(methodOverride('_method'));
-const lorem =
-  "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi, accusamus sed asperiores, dignissimos provident in earum veniam dolorem, aperiam perferendis sapiente. Illo ad commodi distinctio consectetur molestias suscipit, dignissimos facilis?";
+const lorem ="No discription available";
 
 // https://www.googleapis.com/books/v1/volumes?q=search+terms
 let arrOfBooks = [];
