@@ -1,6 +1,236 @@
-h1{
-  color: red;
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+body {
+  background-color: white;
+  padding:0;
+  margin:0;
 }
-body{
-  background-color: aqua;
+
+h2{
+  text-align: center;
+  
 }
+
+h2 span {
+  display: inline-block;
+  background-color: #00c3ff;
+  border-radius: 50%;
+  /* text-align: center; */
+  width: 25px;
+  height: 25px;
+}
+
+
+.main-container {
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: center; */
+  justify-content: space-around;
+}
+
+.container {
+  position: relative;
+  width: 300px;
+  height: 350px;
+  border-radius: 10px;
+  box-shadow: 2px 3px 6px 3px black;
+  text-align: center;
+  background-color: rgb(244, 248, 252);
+  padding: 10px;
+  margin-bottom: 50px;
+}
+
+.container img {
+  border-radius: 10px;
+  width: 150px;
+  height: 200px;
+  box-shadow: 2px 1px 12px rgb(204 235 248);
+  margin-bottom: 15px;
+}
+
+.container button {
+  width: 170px;
+  height: 40px;
+  font-size: 14pt;
+  background-color: #00c3ff;
+  font-weight: bold;
+  border-radius: 10px;
+  color: black;
+  box-shadow: 3px 3px 3px #1d1d1d;
+  position: absolute;
+  bottom: 5px;
+  transform: translateX(-50%);
+}
+
+/* book name */
+
+.container h4 {
+  font-size: 16pt;
+  font-family: 'Dancing Script', cursive;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+/* author name */
+
+.container h5 {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 15px;
+  font-size: 12pt;
+  overflow: hidden;
+}
+p{
+  height: 100px;
+  overflow: auto;
+}
+
+header {
+  display: flex;
+  justify-content: left;
+  height: 100px;
+  background-color: rgb(0, 134, 134);
+  padding: 10px;
+}
+
+#menu-bar {
+  display: relative;
+  margin-right: 10px;
+}
+
+#menu {
+  background-color: rgb(216, 230, 250);
+  width: 150px;
+  height: 75px;
+  border-radius: 5px;
+  background-color: #1d1d1d;
+  line-height: 35px;
+}
+
+#menu a {
+  display: block;
+  font-size: 13pt;
+  width: 200px;
+  color: white;
+  text-decoration: none;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+#menu a:hover {
+  color: #00c3ff;
+}
+
+
+.form-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* text-align: center; */
+  height: 500px;
+  margin: 20px;
+}
+#input-text{
+  display: block;
+  height: 40px;
+  width: 250px;
+  border-radius: 5px;
+  color:black;
+  margin-bottom: 10px;
+  text-indent: 5px;
+  font-size: 14px;
+}
+#input-text[type=text]::placeholder{
+  font-size: 14px;
+}
+.radio-option{
+  display: block;
+  width: 200px;
+  height: 30px;
+}
+.form-container #submit-button{
+  margin-top: 10px;
+  width: 250px;
+  height: 40px;
+  font-size: 14pt;
+  background-color: #00c3ff;
+  font-weight: bold;
+  border-radius: 10px;
+  color: black;
+  box-shadow: 3px 3px 3px #1d1d1d;
+}
+.show-continer{
+  width: 40%;
+  position: absolute;
+  transform: translateX(100%);
+}
+
+.details-div{
+  margin-top: 7px;
+  display: flex;
+  justify-content: space-around;
+}
+.details-div .container{
+  width: 500px;
+  height: 530px;
+  margin-bottom: 0;
+}
+.details-div .container img{
+  width: 200px;
+  height: 250px;
+}
+.details-div h5{
+  margin-top: 10px;
+  font-size: 13pt;
+  display: block;
+  position: relative;
+  top:-10%;
+  left: 160px;
+  margin-bottom: 10px;
+}
+.details-div h5:nth-child(3){
+  left: 165px;
+}
+.details-div button{
+  width: 240px;
+  height: 50px;
+  font-size: 14pt;
+  background-color: #00c3ff;
+  font-weight: bold;
+  border-radius: 10px;
+  color: black;
+  box-shadow: 3px 3px 3px #1d1d1d;
+}
+
+b{
+  font-weight: 700;
+}
+
+.buttons-div{
+position: relative;
+width: 520px;
+display: flex;
+justify-content: space-between;
+top: -5%;
+}
+
+/* #form-container{
+  display: flex;
+  flex-direction: column;
+} */
+
+.details-div #form-container input{
+  display: block;
+  width: 700px;
+  height: 50px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.details-div #form-container textarea{
+  display: block;
+  width: 700px;
+  height: 200px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+

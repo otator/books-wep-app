@@ -6,13 +6,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="style/reset.css">
+  <link rel="stylesheet" href="style/layout.css">
+  <link rel="stylesheet" href="style/modules.css">
 </head>
 
 <body>
-  <h1>Results</h1>
-  
-    <%- include('../layout/detail') %>
-    <!-- <button>Select This Book</button> -->
+
+  <%- include('../layout/header') %>
+    <h2>Results</h2>
+    <div class="show-continer">
+      <%- include('../layout/detail') %>
+    </div>
 </body>
 
 
