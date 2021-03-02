@@ -6,11 +6,11 @@ require("dotenv").config();
 const server = express();
 const pg = require("pg");
 // Database Setup
-const client = new pg.Client(process.env.DATABASE_URL);
-// const client = new pg.Client({
-//   connectionString: process.env.DATABASE_URL,
-//   ssl: { rejectUnauthorized: false },
-// });
+// const client = new pg.Client(process.env.DATABASE_URL);
+const client = new pg.Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false },
+});
 
 const PORT = process.env.PORT || 3030;
 
@@ -19,7 +19,9 @@ server.use(express.static("./public"));
 const superagent = require("superagent");
 server.use(express.urlencoded({ extended: true }));
 
+const methodOverride = require('method-override');
 server.set("view engine", "ejs");
+server.use(methodOverride('_method'));
 const lorem =
   "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi, accusamus sed asperiores, dignissimos provident in earum veniam dolorem, aperiam perferendis sapiente. Illo ad commodi distinctio consectetur molestias suscipit, dignissimos facilis?";
 
@@ -66,7 +68,7 @@ function Book(obj) {
     ? obj.volumeInfo.title
     : "No Title";
   this.author = obj.volumeInfo.hasOwnProperty("authors")
-    ? obj.volumeInfo.authors
+    ? obj.volumeInfo.authors.join(' and ')
     : "No Author";
   this.description = obj.volumeInfo.hasOwnProperty("description")
     ? obj.volumeInfo.description
@@ -81,13 +83,16 @@ function Book(obj) {
 }
 
 server.get("/", (req, res) => {
-  let SQL = `SELECT * FROM books`;
+  let SQL = `SELECT * FROM books;`;
 
   client.query(SQL).then((result) => {
     // console.log("sa;", result.rows);
     if (result.rows.length) {
       // console.log(result.rows);
       res.render("pages/index", { books: result.rows });
+    }else{
+      // res.send("No Books in your Book Shelf");
+      res.render("pages/index2",{books: result.rows});
     }
     // else {
     //   // res.render("pages/index", { data: result.rows });
@@ -100,7 +105,7 @@ server.get("/books/:id", (req, res) => {
   let SQL = `SELECT * FROM books where id = ${req.params.id};`;
 
   client.query(SQL).then((singleData) => {
-    console.log(singleData.rows);
+    // console.log(singleData.rows);
     res.render("pages/books/details", { singleDataBooks: singleData.rows });
   });
 
@@ -109,11 +114,65 @@ server.get("/books/:id", (req, res) => {
 
 server.post("/addtoDB", (req, res) => {
   // console.log(req.body.obj);
+  let obj = arrOfBooks[Number(req.body.obj)];
+  // console.log(obj.title);
 
-  let SQL = `INSERt INTO books (img_url , title, author, descriptions, isbn,bookshelf) VALUES($1,$2,$3,$4,$5,$6);`;
-  // let safeValues = [];
-  console.log(arrOfBooks[Number(req.body.obj)]);
+  let SQL = `INSERT INTO books (img_url , title, author, descriptions, isbn,bookshelf) VALUES($1,$2,$3,$4,$5,$6) RETURNING id;`;
+  let safeValues = [obj.img_url, obj.title, obj.author, obj.description, obj.isbn, obj.bookShelf ];
+  // console.log(arrOfBooks[Number(req.body.obj)]);
+  client.query(SQL, safeValues)
+  .then(result=>{
+    // console.log('I got your results');
+    // console.log(result.rows);
+
+    res.redirect(`/books/${result.rows[0].id}`);
+  })
+  .catch(error=>{
+    console.log("Error in add to bookshelf", error.message);
+  })
+
 });
+
+
+server.put('/updateData/:_isbn', (req, res)=>{
+  // console.log("put" , req.body);
+  console.log(req.params);
+  let {img_url, title, author, isbn, description} = req.body;
+  let safeValue = [img_url, title, author, isbn, description, req.params._isbn ];
+  let sql = 'UPDATE BOOKS SET img_url = $1, title = $2, author = $3, isbn = $4, descriptions = $5 WHERE isbn = $6 RETURNING id;';
+  
+  client.query(sql, safeValue)
+  .then((result)=>{
+    let id = result.rows[0].id;
+    res.redirect(`/books/${id}`);
+  })
+  .catch(error=>{
+    console.log("Error in updating data", error.message);
+  });
+
+});
+
+
+server.delete('/deleteData/:_isbn', (req, res)=>{
+  let sql = "DELETE FROM books WHERE isbn = $1;";
+  // let _isbn = req.params._isbn;
+  //convert the isbn to string in order to delete it from the table
+  let value = [req.params._isbn+""];
+  client.query(sql, value)
+  .then(()=>{
+    res.redirect('/');
+  })
+  .catch(error =>{
+    console.log("Error in deleting row", error.message);
+  })
+
+})
+
+
+
+
+
+
 server.get("*", (req, res) => {
   // res.status(404).send('<img style="background-size:cover;" src="">');
   let imgUrl =
