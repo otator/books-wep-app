@@ -20,28 +20,10 @@
       <%= books.length %>
     </span> Saved Books
   </h2>
-    <% books.forEach(item=>{%>
-      <div>
-        <img src="<%= item.img_url %> " alt="">
-        <h4>
-          <%= item.title %>
-        </h4>
-        <h5>
-          <%= item.author %>
-        </h5>
-        <p>
-          <%= item.description %>
-        </p>
+  <h3>
+    No Books in your Book Shelf
+  </h3>
 
-        <form style="visibility:hidden" action="/books/<%=item.id %>" method="get">
-
-
-          <button style="visibility:visible;" type="submit">View Details</button>
-        </form>
-
-      </div>
-
-      <%})%>
 
 </body>
 
